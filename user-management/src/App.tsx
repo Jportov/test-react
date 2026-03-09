@@ -1,8 +1,7 @@
 import React, { Suspense } from 'react';
 import { CircularProgress, Box } from '@mui/material';
 
-// Lazy loading — só carrega o UserPage quando necessário
-const UserPage = React.lazy(() => import('./pages/UserPage'));
+const UserPageWithQuery = React.lazy(() => import('./pages/UserPageWithQuery'));
 
 function App() {
   return (
@@ -13,7 +12,7 @@ function App() {
         </Box>
       }
     >
-      <UserPage />
+      <UserPageWithQuery />
     </Suspense>
   );
 }
