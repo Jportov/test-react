@@ -50,8 +50,8 @@ Aplicação React moderna para gerenciamento de usuários com operações de CRU
 ## Instalação
 
 ```bash
-git clone <url-do-repositorio>
-cd user-management
+git clone https://github.com/Jportov/test-react.git
+cd test-react/user-management
 npm install
 ```
 
