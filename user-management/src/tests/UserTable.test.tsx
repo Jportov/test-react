@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import UserTable from '../components/UserTable';
@@ -34,5 +33,5 @@ describe('UserTable', () => {
       expect(screen.getByText('João Silva')).toBeInTheDocument();
       expect(screen.queryByText('Maria Santos')).not.toBeInTheDocument();
     });
-  });;
+  });
 });

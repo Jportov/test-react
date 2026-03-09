@@ -1,29 +1,46 @@
 # Painel de Gestão de Usuários
 
-Aplicação React para gerenciamento de usuários com operações de CRUD (Criar, Ler, Atualizar, Excluir).
+🔗 **Demo:** [https://test-react-five-lake.vercel.app](https://test-react-five-lake.vercel.app)
 
-## Tecnologias Utilizadas
+Aplicação React moderna para gerenciamento de usuários com operações de CRUD completas, desenvolvida como desafio técnico.
 
-- **React 18** com Hooks e componentes funcionais
-- **TypeScript** para tipagem estática
-- **Redux Toolkit** para gerenciamento de estado global
-- **Material-UI (MUI)** para componentes visuais
-- **Axios** para integração com API REST
-- **Vitest + React Testing Library** para testes automatizados
-- **ESLint + Prettier** para qualidade e padronização de código
-- **Vite** como bundler de desenvolvimento
+## Tecnologias
+
+| Categoria | Tecnologia |
+|-----------|------------|
+| Framework | React 18 com Hooks e componentes funcionais |
+| Linguagem | TypeScript |
+| Estado Global | Redux Toolkit (createAsyncThunk) |
+| Server State | React Query (TanStack Query) |
+| UI | Material-UI (MUI) |
+| HTTP | Axios |
+| Testes | Vitest + React Testing Library |
+| Linting | ESLint + Prettier |
+| Build | Vite |
+| CI/CD | GitHub Actions |
+| Documentação | Storybook |
+| Deploy | Vercel |
 
 ## Funcionalidades
 
-- Listagem de usuários com filtro por nome e ordenação por colunas
-- Cadastro de novos usuários com validação de campos
-- Edição de usuários existentes
+**CRUD Completo**
+- Listagem de usuários em tabela com nome, e-mail e status
+- Filtro por nome em tempo real
+- Ordenação por colunas (nome e e-mail)
+- Cadastro de novos usuários com validação de campos obrigatórios
+- Edição de usuários existentes via modal
 - Exclusão com diálogo de confirmação
-- Dark Mode com persistência da preferência do usuário
-- Error Boundary para captura de erros em tempo de execução
-- Code Splitting com React.lazy e Suspense
+
+**Diferenciais Implementados**
+- Dark Mode persistente com detecção de preferência do sistema (useMediaQuery)
+- React Query com cache, invalidation e atualização otimista
+- ErrorBoundary personalizado para captura de erros em tempo de execução
+- Code Splitting e Lazy Loading com React.lazy() e Suspense
 - Memoização com useMemo, useCallback e React.memo
-- Acessibilidade com atributos ARIA e navegação por teclado
+- Acessibilidade (a11y) com atributos ARIA e navegação por teclado
+- Storybook com componente DeleteDialog documentado
+- CI/CD no GitHub Actions (lint, testes e build automatizados)
+- Deploy automático no Vercel
 
 ## Pré-requisitos
 
@@ -31,6 +48,7 @@ Aplicação React para gerenciamento de usuários com operações de CRUD (Criar
 - npm 9+
 
 ## Instalação
+
 ```bash
 git clone <url-do-repositorio>
 cd user-management
@@ -38,44 +56,77 @@ npm install
 ```
 
 ## Execução
+
 ```bash
 npm run dev
 ```
 
-A aplicação abre em `http://localhost:5173`
+Acesse `http://localhost:5173`
 
 ## Testes
+
 ```bash
 npm run test
 ```
 
-## Scripts Disponíveis
+Os testes cobrem:
+- Renderização da listagem de usuários
+- Filtro por nome na tabela
+- Validação de campos obrigatórios no formulário
+- Criação de novo usuário com simulação de clique no botão "Salvar"
+- Atualização de estado global (Redux)
+- Integração completa com React Query
+- Alternância de Dark Mode
+
+## Scripts
 
 | Comando | Descrição |
 |---------|-----------|
-| `npm run dev` | Inicia servidor de desenvolvimento |
-| `npm run build` | Gera build de produção |
-| `npm run test` | Executa testes automatizados |
-| `npm run lint` | Verifica código com ESLint |
-| `npm run format` | Formata código com Prettier |
+| `npm run dev` | Servidor de desenvolvimento |
+| `npm run build` | Build de produção |
+| `npm run test` | Testes automatizados |
+| `npm run lint` | Verificação ESLint |
+| `npm run format` | Formatação com Prettier |
+| `npm run storybook` | Documentação de componentes |
 
 ## Estrutura do Projeto
+
 ```
 src/
-├── components/    # Componentes reutilizáveis
-├── pages/         # Páginas da aplicação
-├── store/         # Redux (estado global)
-├── services/      # Chamadas à API
-├── types/         # Interfaces TypeScript
-└── tests/         # Testes automatizados
+├── components/          # Componentes reutilizáveis
+│   ├── UserTable.tsx      # Tabela com filtro e ordenação
+│   ├── UserForm.tsx       # Formulário de criação/edição
+│   ├── DeleteDialog.tsx   # Diálogo de confirmação
+│   ├── ThemeProvider.tsx  # Contexto de Dark Mode
+│   ├── ErrorBoundary.tsx  # Captura de erros
+│   └── __stories__/       # Stories do Storybook
+├── pages/               # Páginas da aplicação
+│   ├── UserPage.tsx         # Versão com Redux Toolkit
+│   └── UserPageWithQuery.tsx # Versão com React Query
+├── store/               # Estado global (Redux)
+│   ├── index.ts           # Configuração da store
+│   └── userSlice.ts       # Slice de usuários com thunks
+├── services/            # Comunicação com API
+│   ├── userService.ts     # Chamadas REST (axios)
+│   ├── queryClient.ts     # Configuração do React Query
+│   └── useUsers.ts        # Hooks customizados (React Query)
+├── types/               # Interfaces TypeScript
+│   └── User.ts            # Tipos User e CreateUserDTO
+└── tests/               # Testes automatizados
+    ├── setup.ts
+    ├── UserTable.test.tsx
+    ├── UserForm.test.tsx
+    ├── DeleteDialog.test.tsx
+    ├── UserPage.integration.test.tsx
+    └── UserPageWithQuery.integration.test.tsx
 ```
 
 ## Decisões Técnicas
 
-- **Vitest** em vez de Jest: compatível com a API do Jest e nativo do Vite, oferecendo melhor performance e configuração simplificada.
-- **JSONPlaceholder** como API: não exige setup adicional. As operações de CRUD são gerenciadas no estado global via Redux. A troca para uma API real seria transparente alterando apenas o service.
-- **Redux Toolkit** em vez de Context API: melhor para gerenciar estado complexo com operações assíncronas (createAsyncThunk) e oferece DevTools integrado.
-```
+**Vitest em vez de Jest:** Compatível com a API do Jest e nativo do Vite, oferecendo melhor performance e configuração simplificada sem necessidade de transpiladores adicionais.
 
----
+**JSONPlaceholder como API:** Não exige setup adicional por parte do avaliador. As operações de CRUD são gerenciadas no estado global. A troca para uma API com persistência seria transparente, alterando apenas o arquivo de service.
 
+**Redux Toolkit + React Query:** Implementei ambas as abordagens para demonstrar conhecimento das duas. O Redux gerencia estado do cliente (UI), enquanto o React Query é especializado em server state (cache, refetch, invalidação). A aplicação principal utiliza React Query, com a versão Redux mantida como referência e coberta por testes.
+
+**Conventional Commits:** Histórico de commits organizado seguindo o padrão semântico (feat, fix, test, docs, chore, ci) para facilitar rastreabilidade e geração de changelogs.

@@ -1,4 +1,3 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import UserForm from '../components/UserForm';
@@ -6,7 +5,7 @@ import UserForm from '../components/UserForm';
 describe('UserForm', () => {
   it('deve mostrar erros de validação quando campos estão vazios', async () => {
     const user = userEvent.setup();
-    const onSave = vi.fn();
+    const onSave = jest.fn();
 
     render(
       <UserForm open={true} user={null} onClose={() => {}} onSave={onSave} />
@@ -22,8 +21,8 @@ describe('UserForm', () => {
 
   it('deve chamar onSave com dados corretos ao preencher e salvar', async () => {
     const user = userEvent.setup();
-    const onSave = vi.fn();
-    const onClose = vi.fn();
+    const onSave = jest.fn();
+    const onClose = jest.fn();
 
     render(
       <UserForm open={true} user={null} onClose={onClose} onSave={onSave} />

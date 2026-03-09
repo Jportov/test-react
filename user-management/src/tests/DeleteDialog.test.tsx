@@ -1,4 +1,3 @@
-import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import DeleteDialog from '../components/DeleteDialog';
@@ -17,7 +16,7 @@ describe('DeleteDialog', () => {
 
   it('deve chamar onConfirm ao clicar em Excluir', async () => {
     const user = userEvent.setup();
-    const onConfirm = vi.fn();
+    const onConfirm = jest.fn();
 
     render(
       <DeleteDialog open={true} user={mockUser} onClose={() => {}} onConfirm={onConfirm} />
