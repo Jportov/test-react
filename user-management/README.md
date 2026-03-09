@@ -14,7 +14,7 @@ Aplicação React moderna para gerenciamento de usuários com operações de CRU
 | Server State | React Query (TanStack Query) |
 | UI | Material-UI (MUI) |
 | HTTP | Axios |
-| Testes | Vitest + React Testing Library |
+| Testes | Jest + React Testing Library |
 | Linting | ESLint + Prettier |
 | Build | Vite |
 | CI/CD | GitHub Actions |
@@ -84,7 +84,7 @@ Os testes cobrem:
 |---------|-----------|
 | `npm run dev` | Servidor de desenvolvimento |
 | `npm run build` | Build de produção |
-| `npm run test` | Testes automatizados |
+| `npm run test` | Testes automatizados (Jest) |
 | `npm run lint` | Verificação ESLint |
 | `npm run format` | Formatação com Prettier |
 | `npm run storybook` | Documentação de componentes |
@@ -122,8 +122,6 @@ src/
 ```
 
 ## Decisões Técnicas
-
-**Vitest em vez de Jest:** Compatível com a API do Jest e nativo do Vite, oferecendo melhor performance e configuração simplificada sem necessidade de transpiladores adicionais.
 
 **JSONPlaceholder como API:** Não exige setup adicional por parte do avaliador. As operações de CRUD são gerenciadas no estado global. A troca para uma API com persistência seria transparente, alterando apenas o arquivo de service.
 
