@@ -26,7 +26,7 @@ describe('UserTable', () => {
       <UserTable users={mockUsers} onEdit={() => {}} onDelete={() => {}} />
     );
 
-    const filterInput = screen.getByRole('textbox', { name: /filtrar por nome/i });
+   const filterInput = screen.getByRole('textbox', { name: /buscar usuário/i });
     await user.type(filterInput, 'João');
 
     await waitFor(() => {
