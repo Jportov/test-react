@@ -1,73 +1,81 @@
-# React + TypeScript + Vite
+# Painel de Gestão de Usuários
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação React para gerenciamento de usuários com operações de CRUD (Criar, Ler, Atualizar, Excluir).
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React 18** com Hooks e componentes funcionais
+- **TypeScript** para tipagem estática
+- **Redux Toolkit** para gerenciamento de estado global
+- **Material-UI (MUI)** para componentes visuais
+- **Axios** para integração com API REST
+- **Vitest + React Testing Library** para testes automatizados
+- **ESLint + Prettier** para qualidade e padronização de código
+- **Vite** como bundler de desenvolvimento
 
-## React Compiler
+## Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Listagem de usuários com filtro por nome e ordenação por colunas
+- Cadastro de novos usuários com validação de campos
+- Edição de usuários existentes
+- Exclusão com diálogo de confirmação
+- Dark Mode com persistência da preferência do usuário
+- Error Boundary para captura de erros em tempo de execução
+- Code Splitting com React.lazy e Suspense
+- Memoização com useMemo, useCallback e React.memo
+- Acessibilidade com atributos ARIA e navegação por teclado
 
-## Expanding the ESLint configuration
+## Pré-requisitos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Node.js 18+
+- npm 9+
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Instalação
+```bash
+git clone <url-do-repositorio>
+cd user-management
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Execução
+```bash
+npm run dev
 ```
+
+A aplicação abre em `http://localhost:5173`
+
+## Testes
+```bash
+npm run test
+```
+
+## Scripts Disponíveis
+
+| Comando | Descrição |
+|---------|-----------|
+| `npm run dev` | Inicia servidor de desenvolvimento |
+| `npm run build` | Gera build de produção |
+| `npm run test` | Executa testes automatizados |
+| `npm run lint` | Verifica código com ESLint |
+| `npm run format` | Formata código com Prettier |
+
+## Estrutura do Projeto
+```
+src/
+├── components/    # Componentes reutilizáveis
+├── pages/         # Páginas da aplicação
+├── store/         # Redux (estado global)
+├── services/      # Chamadas à API
+├── types/         # Interfaces TypeScript
+└── tests/         # Testes automatizados
+```
+
+## Decisões Técnicas
+
+- **Vitest** em vez de Jest: compatível com a API do Jest e nativo do Vite, oferecendo melhor performance e configuração simplificada.
+- **JSONPlaceholder** como API: não exige setup adicional. As operações de CRUD são gerenciadas no estado global via Redux. A troca para uma API real seria transparente alterando apenas o service.
+- **Redux Toolkit** em vez de Context API: melhor para gerenciar estado complexo com operações assíncronas (createAsyncThunk) e oferece DevTools integrado.
+```
+
+---
+
