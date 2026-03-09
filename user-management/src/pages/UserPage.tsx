@@ -1,3 +1,5 @@
+import { DarkMode, LightMode } from '@mui/icons-material';
+import { useThemeContext } from '../components/ThemeProvider';
 import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -7,6 +9,7 @@ import {
   Box,
   CircularProgress,
   Alert,
+  IconButton
 } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import type { RootState, AppDispatch } from '../store';
@@ -24,6 +27,7 @@ const UserPage: React.FC = () => {
   const [formOpen, setFormOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const { toggleTheme, isDarkMode } = useThemeContext();
 
   // Busca os usuários ao montar o componente
   useEffect(() => {
@@ -91,6 +95,15 @@ const UserPage: React.FC = () => {
         <Typography variant="h4" component="h1">
           Gestão de Usuários
         </Typography>
+        <IconButton
+            onClick={toggleTheme}
+            aria-label="Alternar tema"
+          >
+            {isDarkMode ? <LightMode /> : <DarkMode />}
+          </IconButton>
+
+        
+
         <Button
           variant="contained"
           startIcon={<Add />}
