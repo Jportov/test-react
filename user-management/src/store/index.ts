@@ -12,4 +12,4 @@ export const store = configureStore({
 // RootState = formato completo da store
 export type RootState = ReturnType<typeof store.getState>;
 // AppDispatch = tipo do dispatch (para disparar actions)
-export type AppDispatch = ReturnType<typeof store.dispatch>;
+export type AppDispatch = typeof store.dispatch;
